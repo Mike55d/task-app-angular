@@ -1,0 +1,10 @@
+<div class="input-group">
+	<input #itemTitle type="text" class="form-control" placeholder="add task">
+	<div class="input-group-append">
+		<button (click)="addTodo(itemTitle)" class="btn btn-secondary"><i class="fas fa-plus-circle"></i></button>
+	</div>
+</div>
+
+<ul class="list-group mt-4">
+	<li *ngFor="let task of allTask " class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{{task.title}}</li>
+</ul>
