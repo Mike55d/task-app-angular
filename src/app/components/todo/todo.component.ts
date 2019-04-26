@@ -40,4 +40,9 @@ export class TodoComponent implements OnInit {
 		this.todoService.updateTodo(id , !checked);
 	}
 
+	removeTask(id){
+		if (confirm('Seguro que quieres eliminarlo?')) {
+			this.todoService.removeTodo(id);
+		}
+	}
 }

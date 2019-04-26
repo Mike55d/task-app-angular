@@ -8,8 +8,11 @@
 <ul class="list-group mt-4">
 	<li *ngFor="let task of allTask " class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
 	<span [class.text-success]="task.isChecked" (click)="updateTodo(task.id,task.isChecked)">
-		<i class="fas fa-check-circle hover"></i>
+		<i [ngClass]="task.isChecked ? 'fas fa-check-circle' : 'far fa-circle'"></i>
 	</span>
 	{{task.title}}
+	<span (click)="removeTask(task.id)" class="hover text-danger">
+		<i class="fas fa-trash"></i>
+	</span>
 </li>
 </ul>
