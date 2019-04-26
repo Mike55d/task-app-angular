@@ -15,17 +15,18 @@ export class TodoComponent implements OnInit {
 
 	ngOnInit() {
 
-		this.allTask = [];
 
+		this.allTask = [];
 		this.todoService.getTodoList()
-		.stateChanges().subscribe(
-			a => {
-				let x = a.payload.val() ;
-				x['id'] = a.key;
-				this.allTask.push(x);
-				console.log(x);
-			}
-		)
+		.snapshotChanges()
+  	.subscribe(item => {
+  		this.allTask = [];
+  		item.forEach(element =>{
+  			let x =	element.payload.val();
+  			x['id'] = element.key;
+  			this.allTask.push(x);
+  		});
+  	});
       
 		console.log(this.allTask);
 	}
@@ -33,6 +34,10 @@ export class TodoComponent implements OnInit {
 	addTodo(itemTitle){
 		this.todoService.addTodo(itemTitle.value);
 		itemTitle.value = null;
+	}
+
+	updateTodo(id,checked){
+		this.todoService.updateTodo(id , !checked);
 	}
 
 }
